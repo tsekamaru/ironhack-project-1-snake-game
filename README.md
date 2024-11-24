@@ -22,5 +22,5 @@ The first student project of Ironhack part-time october 2024 class.
         - Snake can move only forward and turn its head to the right or left
         - Snake has a movement speed of 2 game square per second
     6. Score
-        - Each picked-food can add 1 point ot the game
+        - Each picked-food can add 1 point to the score
     
