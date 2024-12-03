@@ -1,0 +1,77 @@
+body {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  width: 100vw;
+  margin: 0;
+  background-color: #222738;
+  color: #6e7888;
+  font-family: "Poppins", sans-serif;
+}
+
+#game-board {
+  display: grid;
+  grid-template-columns: repeat(20, 40px);
+  grid-template-rows: repeat(20, 40px);
+  background-color: #181825;
+  gap: 0;
+}
+
+#game-board > div {
+  border: none;
+}
+
+#instruction-text {
+  position: absolute;
+  top: 60%;
+  text-align: center;
+  text-transform: capitalize;
+  width: 300px;
+  margin: 0;
+  padding: 30px;
+}
+
+.scores {
+  display: flex;
+  justify-content: space-between;
+}
+
+#score,
+#highScore {
+  font-size: 60px;
+  margin: 40px 0;
+}
+
+.highestContainer {
+  display: none;
+}
+
+.high {
+  display: flex;
+  justify-content: end;
+}
+
+.scoreText {
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+
+.snake {
+  background-color: #6e7888;
+  border: none;
+  color: #7d8796;
+}
+
+.food {
+  background-color: hsl(196, 71%, 34%);
+  border: none;
+  box-shadow: 0 0 5px hsl(196, 71%, 34%), 0 0 25px hsl(196, 71%, 34%), 0 0 50px hsl(196, 71%, 34%),
+    0 0 200px hsl(196, 71%, 34%);
+}
+
+#logo {
+  position: absolute;
+  top: 40%;
+  width: 300px;
+}

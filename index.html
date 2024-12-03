@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Snake Game</title>
+    <link rel="stylesheet" href="styles/styles.css" />
+    <script src="src/script.js" defer></script>
+  </head>
+  <body>
+    <div>
+      <div>
+        <div class="scores">
+          <div class="scoreContainer">
+            <span class="scoreText curr">score</span>
+            <h1 id="score">000</h1>
+          </div>
+
+          <div class="highestContainer">
+            <span class="scoreText high">highest</span>
+            <h1 id="highScore">000</h1>
+          </div>
+        </div>
+      </div>
+      <div id="game-board"></div>
+    </div>
+    <div id="instruction-text">
+      <h1>Press space bar to start the game</h1>
+      <p>Use arrow keys to control the snake</p>
+    </div>
+    <!-- <div class="speedContainer">
+      <span class="scoreText speed">speed</span>
+      <h1 class="speedText">000</h1>
+    </div> -->
+  </body>
+</html>
+
+<!-- 1. Make it not possible to move backwards -->
+<!-- 2. Let not food spawn on the snake -->
