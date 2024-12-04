@@ -5,6 +5,7 @@ const logo = document.getElementById("logo");
 const score = document.getElementById("score");
 const highScoreText = document.getElementById("highScore");
 const highestContainer = document.querySelector(".highestContainer");
+const speed = document.querySelector(".speed");
 
 // Define game variables
 const gridSize = 20;
@@ -120,13 +121,13 @@ function move() {
 // Increasing the speed function
 function increaseSpeed() {
   console.log(gameSpeedDelay);
-  if (gameSpeedDelay > 150) {
+  if (gameSpeedDelay > 100) {
+    gameSpeedDelay -= 10;
+  } else if (gameSpeedDelay > 50) {
     gameSpeedDelay -= 5;
-  } else if (gameSpeedDelay > 120) {
-    gameSpeedDelay -= 3;
-  } else if (gameSpeedDelay > 90) {
-    gameSpeedDelay -= 1;
   }
+  let gameSpeed = (1000 / gameSpeedDelay).toFixed(1);
+  speed.innerText = `speed ${gameSpeed} sqr/s`;
 }
 
 // Checking collision
