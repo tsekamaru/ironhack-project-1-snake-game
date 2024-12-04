@@ -15,13 +15,14 @@ body {
   grid-template-columns: repeat(20, 40px);
   grid-template-rows: repeat(20, 40px);
   background-color: #181825;
-  gap: 0;
 }
 
-#game-board > div {
-  border: none;
+audio {
+  background-color: #181825;
+  color: #181825;
+  margin-top: 50px;
+  display: block;
 }
-
 #instruction-text {
   position: absolute;
   top: 60%;
@@ -59,15 +60,7 @@ body {
 
 .snake {
   background-color: #6e7888;
-  border: none;
   color: #7d8796;
-}
-
-.food {
-  background-color: hsl(196, 71%, 34%);
-  border: none;
-  box-shadow: 0 0 5px hsl(196, 71%, 34%), 0 0 25px hsl(196, 71%, 34%), 0 0 50px hsl(196, 71%, 34%),
-    0 0 200px hsl(196, 71%, 34%);
 }
 
 #logo {
