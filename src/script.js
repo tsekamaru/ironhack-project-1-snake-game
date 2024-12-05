@@ -6,12 +6,15 @@ const score = document.getElementById("score");
 const highScoreText = document.getElementById("highScore");
 const highestContainer = document.querySelector(".highestContainer");
 const speed = document.querySelector(".speed");
+const mySound = new Audio("/assets/Mezhdunami - Flashes.mp3");
+const eatSound = new Audio("/assets/mixkit-bonus-earned-in-video-game-2058.wav");
 
 // Define game variables
 const gridSize = 20;
 let snake = [{ x: 10, y: 10 }];
 let food = generateFood();
-let direction = "right";
+let randomColor = randomHue();
+let direction = ["right"];
 let highScore = 0;
 let gameInterval;
 let gameSpeedDelay = 200;
@@ -48,6 +51,7 @@ function drawFood() {
   const foodElement = createGameElement("div", "food");
   setPosition(foodElement, food);
   board.appendChild(foodElement);
+  colorFood(foodElement);
 }
 
 // Create a snake or food cube/div
@@ -62,7 +66,15 @@ function setPosition(element, position) {
   element.style.gridColumn = position.x;
   element.style.gridRow = position.y;
 }
+// Generate color function
+function colorFood(foodElement) {
+  foodElement.style.backgroundColor = `hsl(${randomColor}, 71%, 50%)`;
+  foodElement.style.boxShadow = `0 0 25px hsl(${randomColor}, 71%, 50%), 0 0 75px hsl(${randomColor}, 71%, 50%)`;
+}
 
+function randomHue() {
+  return Math.floor(Math.random() * 360);
+}
 // Generate food
 function generateFood() {
   while (true) {
@@ -86,7 +98,7 @@ function checkFoodOnSnake(x, y) {
 // Moving the snake
 function move() {
   const head = { ...snake[0] };
-  switch (direction) {
+  switch (direction[0]) {
     case "up":
       head.y--;
       break;
@@ -100,13 +112,17 @@ function move() {
       head.x++;
       break;
   }
+  if (direction.length > 1) direction.shift();
 
   snake.unshift(head);
 
   // When the snake eats, the game updates the following
   if (head.x === food.x && head.y === food.y) {
+    eatSound.pause();
+    eatSound.play();
     increaseSpeed();
     food = generateFood();
+    randomColor = randomHue();
     clearInterval(gameInterval); // Clear past interval
     gameInterval = setInterval(() => {
       move();
@@ -134,8 +150,15 @@ function increaseSpeed() {
 function checkCollision() {
   const head = snake[0];
 
-  if (head.x < 1 || head.x > gridSize || head.y < 1 || head.y > gridSize) {
-    resetGame();
+  // Make wall penetrable
+  if (head.x < 1) {
+    head.x = 20;
+  } else if (head.x > gridSize) {
+    head.x = 1;
+  } else if (head.y < 1) {
+    head.y = 20;
+  } else if (head.y > gridSize) {
+    head.y = 1;
   }
 
   for (let i = 1; i < snake.length; i++) {
@@ -163,16 +186,16 @@ function handleKeyPress(event) {
   } else {
     switch (event.key) {
       case "ArrowUp":
-        if (direction !== "down") direction = "up";
+        if (direction.at(-1) !== "down") direction.push("up");
         break;
       case "ArrowDown":
-        if (direction !== "up") direction = "down";
+        if (direction.at(-1) !== "up") direction.push("down");
         break;
       case "ArrowLeft":
-        if (direction !== "right") direction = "left";
+        if (direction.at(-1) !== "right") direction.push("left");
         break;
       case "ArrowRight":
-        if (direction !== "left") direction = "right";
+        if (direction.at(-1) !== "left") direction.push("right");
         break;
     }
   }
@@ -185,7 +208,8 @@ function resetGame() {
   stopGame();
   snake = [{ x: 10, y: 10 }];
   food = generateFood();
-  direction = "right";
+  randomColor = randomHue();
+  direction = ["right"];
   gameSpeedDelay = 200;
   updateScore();
 }
