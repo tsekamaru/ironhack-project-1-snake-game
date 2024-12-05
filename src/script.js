@@ -172,6 +172,7 @@ function checkCollision() {
 function startGame() {
   gameStarted = true; // Keep track of a running game
   instructionText.style.display = "none";
+  speed.innerText = `speed 5.0 sqr/s`;
   gameInterval = setInterval(() => {
     move();
     checkCollision();
