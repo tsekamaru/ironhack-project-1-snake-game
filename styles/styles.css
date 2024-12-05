@@ -18,14 +18,12 @@ body {
 }
 
 audio {
-  background-color: #181825;
-  color: #181825;
-  margin-top: 50px;
   display: block;
 }
+
 #instruction-text {
   position: absolute;
-  top: 60%;
+  top: 50%;
   text-align: center;
   text-transform: capitalize;
   width: 300px;
@@ -61,10 +59,4 @@ audio {
 .snake {
   background-color: #6e7888;
   color: #7d8796;
-}
-
-#logo {
-  position: absolute;
-  top: 40%;
-  width: 300px;
 }

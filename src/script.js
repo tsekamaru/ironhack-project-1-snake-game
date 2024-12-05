@@ -14,7 +14,7 @@ const gridSize = 20;
 let snake = [{ x: 10, y: 10 }];
 let food = generateFood();
 let randomColor = randomHue();
-let direction = "right";
+let direction = ["right"];
 let highScore = 0;
 let gameInterval;
 let gameSpeedDelay = 200;
@@ -98,7 +98,7 @@ function checkFoodOnSnake(x, y) {
 // Moving the snake
 function move() {
   const head = { ...snake[0] };
-  switch (direction) {
+  switch (direction[0]) {
     case "up":
       head.y--;
       break;
@@ -112,6 +112,7 @@ function move() {
       head.x++;
       break;
   }
+  if (direction.length > 1) direction.shift();
 
   snake.unshift(head);
 
@@ -185,16 +186,16 @@ function handleKeyPress(event) {
   } else {
     switch (event.key) {
       case "ArrowUp":
-        if (direction !== "down") direction = "up";
+        if (direction.at(-1) !== "down") direction.push("up");
         break;
       case "ArrowDown":
-        if (direction !== "up") direction = "down";
+        if (direction.at(-1) !== "up") direction.push("down");
         break;
       case "ArrowLeft":
-        if (direction !== "right") direction = "left";
+        if (direction.at(-1) !== "right") direction.push("left");
         break;
       case "ArrowRight":
-        if (direction !== "left") direction = "right";
+        if (direction.at(-1) !== "left") direction.push("right");
         break;
     }
   }
@@ -208,7 +209,7 @@ function resetGame() {
   snake = [{ x: 10, y: 10 }];
   food = generateFood();
   randomColor = randomHue();
-  direction = "right";
+  direction = ["right"];
   gameSpeedDelay = 200;
   updateScore();
 }
